@@ -1,0 +1,111 @@
+.register__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: var(--light-grey);
+  overflow-y: scroll;
+}
+
+.register__box {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border: 1px solid var(--grey);
+  background: white;
+  max-width: 21rem;
+}
+
+.register__box > :not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.register__logo {
+  align-self: center;
+  pointer-events: none;
+}
+
+.register__description {
+  font-weight: 700;
+  color: var(--darker-grey);
+  text-align: center;
+}
+
+.register__github {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--dark-grey);
+  padding: 1rem;
+  font-size: 1rem;
+  color: white;
+  border-radius: 2px;
+  border: none;
+}
+
+.register__github:hover {
+  cursor: pointer;
+}
+
+.register__github_icon {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.register__divider {
+  display: flex;
+}
+
+.register__divider hr {
+  flex: 1;
+  background: var(--grey);
+  height: 1px;
+  border: none;
+}
+
+.register__divider span {
+  margin: 0 1rem;
+  color: var(--darker-grey);
+  font-weight: 700;
+}
+
+.register__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register__form > *:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+
+.register__form_button {
+  font-size: 1rem;
+  color: white;
+  background: var(--blue);
+  padding: 1rem;
+  border-radius: 2px;
+  border: none;
+}
+
+.register__form_button:hover {
+  cursor: pointer;
+}
+
+.register__form_button:disabled {
+  background: var(--light-blue);
+  pointer-events: none;
+}
+
+.register__login {
+  display: flex;
+  justify-content: center;
+}
+
+.register__login_text {
+  margin-right: 0.5rem;
+}
+
+.register__login_link {
+  color: var(--blue);
+  text-decoration: none;
+}

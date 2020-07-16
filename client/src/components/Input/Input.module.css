@@ -1,0 +1,58 @@
+.input__container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.input__wrapper {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  font-size: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--grey);
+  border-radius: 2px;
+}
+
+.input_error_border {
+  border: 1px solid var(--red);
+}
+
+.input__label {
+  position: absolute;
+  left: 1.1rem;
+  top: 1.1rem;
+  color: var(--dark-grey);
+  pointer-events: none;
+  transition: top 0.3s ease-in-out;
+}
+
+.input:not(:placeholder-shown) ~ .input__label {
+  top: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.input:not(:placeholder-shown) {
+  padding: 1.5rem 1rem 0.5rem;
+}
+
+.input__error {
+  position: absolute;
+  bottom: -1rem;
+  font-size: 0.8rem;
+  color: var(--red);
+}
+
+.input__password_icon {
+  position: absolute;
+  right: 0.5rem;
+  top: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.input__wrapper .input_password {
+  padding-right: 2.2rem;
+}
