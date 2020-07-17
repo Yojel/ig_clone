@@ -6,10 +6,14 @@ import { AuthRoute } from "../components/AuthRoute";
 import { Login } from "./Login";
 import { Register } from "./Register";
 import { Github } from "./Github";
+import { Home } from "./Home";
 
 export const Routes = () => (
   <BrowserRouter>
     <Switch>
+      <ProtectedRoute exact path="/">
+        <Home />
+      </ProtectedRoute>
       <AuthRoute exact path="/login">
         <Login />
       </AuthRoute>

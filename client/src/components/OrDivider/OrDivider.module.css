@@ -1,0 +1,16 @@
+.divider {
+  display: flex;
+}
+
+.divider hr {
+  flex: 1;
+  background: var(--grey);
+  height: 1px;
+  border: none;
+}
+
+.divider span {
+  margin: 0 1rem;
+  color: var(--darker-grey);
+  font-weight: 700;
+}

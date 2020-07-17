@@ -31,45 +31,6 @@
   text-align: center;
 }
 
-.register__github {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--dark-grey);
-  padding: 1rem;
-  font-size: 1rem;
-  color: white;
-  border-radius: 2px;
-  border: none;
-  text-decoration: none;
-}
-
-.register__github:hover {
-  cursor: pointer;
-}
-
-.register__github_icon {
-  font-size: 1.5rem;
-  margin-right: 0.5rem;
-}
-
-.register__divider {
-  display: flex;
-}
-
-.register__divider hr {
-  flex: 1;
-  background: var(--grey);
-  height: 1px;
-  border: none;
-}
-
-.register__divider span {
-  margin: 0 1rem;
-  color: var(--darker-grey);
-  font-weight: 700;
-}
-
 .register__form {
   display: flex;
   flex-direction: column;
@@ -103,7 +64,7 @@
 }
 
 .register__login_text {
-  margin-right: 0.5rem;
+  margin-right: 0.2rem;
 }
 
 .register__login_link {

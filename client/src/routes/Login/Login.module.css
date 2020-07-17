@@ -1,0 +1,65 @@
+.login__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: var(--light-grey);
+  overflow-y: scroll;
+}
+
+.login__box {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border: 1px solid var(--grey);
+  padding: 2rem;
+}
+
+.login__box > :not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.login__logo {
+  align-self: center;
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login__form > *:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+
+.login__form_button {
+  padding: 1rem;
+  font-size: 1rem;
+  color: white;
+  background: var(--blue);
+  border-radius: 2px;
+  border: none;
+}
+
+.login__form_button:hover {
+  cursor: pointer;
+}
+
+.login__form_button:disabled {
+  background: var(--light-blue);
+  pointer-events: none;
+}
+
+.login__register {
+  display: flex;
+  justify-content: center;
+}
+
+.login__register_text {
+  margin-right: 0.2rem;
+}
+
+.login__register_link {
+  color: var(--blue);
+  text-decoration: none;
+}

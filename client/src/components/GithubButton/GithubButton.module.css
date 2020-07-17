@@ -1,0 +1,21 @@
+.github_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--dark-grey);
+  padding: 1rem;
+  font-size: 1rem;
+  color: white;
+  border-radius: 2px;
+  border: none;
+  text-decoration: none;
+}
+
+.github_button:hover {
+  cursor: pointer;
+}
+
+.github_button_icon {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}

@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import styles from "./Register.module.css";
 import { Input } from "../../components/Input";
 import { registerAction } from "../../redux/auth";
+import { GithubButton } from "../../components/GithubButton";
+import { OrDivider } from "../../components/OrDivider";
 
 type IFormInputs = {
   name: string;
@@ -38,7 +40,6 @@ export const Register = () => {
   });
 
   const onSubmit = (data: IFormInputs) => {
-    console.log(data);
     dispatch(registerAction(data));
   };
 
@@ -49,18 +50,8 @@ export const Register = () => {
         <span className={styles.register__description}>
           Sign up to see photos and videos from your friends.
         </span>
-        <a
-          href={`https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&scope=user:email`}
-          className={styles.register__github}
-        >
-          <FaGithub className={styles.register__github_icon} />
-          <span>Login with Github</span>
-        </a>
-        <div className={styles.register__divider}>
-          <hr />
-          <span>OR</span>
-          <hr />
-        </div>
+        <GithubButton />
+        <OrDivider />
         <form
           className={styles.register__form}
           onSubmit={handleSubmit(onSubmit)}

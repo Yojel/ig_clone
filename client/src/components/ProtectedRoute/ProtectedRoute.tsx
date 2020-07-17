@@ -23,7 +23,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
       {authenticated ? (
         <Route {...rest}>{children}</Route>
       ) : (
-        <Redirect to="/register" />
+        <Redirect to="/login" />
       )}
     </>
   );
