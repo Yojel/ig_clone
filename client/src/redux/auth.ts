@@ -42,6 +42,20 @@ interface RegisterFailureAction {
   error: any;
 }
 
+interface GithubLoginRequestAction {
+  type: typeof GITHUB_LOGIN_REQUEST;
+}
+
+interface GithubLoginSuccessAction {
+  type: typeof GITHUB_LOGIN_SUCCESS;
+  payload: User;
+}
+
+interface GithubLoginFailureAction {
+  type: typeof GITHUB_LOGIN_FAILURE;
+  error: any;
+}
+
 interface RegisterArgs {
   name: string;
   email: string;
@@ -52,12 +66,18 @@ interface RegisterArgs {
 type AuthActionTypes =
   | RegisterRequestAction
   | RegisterSuccessAction
-  | RegisterFailureAction;
+  | RegisterFailureAction
+  | GithubLoginRequestAction
+  | GithubLoginSuccessAction
+  | GithubLoginFailureAction;
 
 // Action Types
 const REGISTER_REQUEST = "REGISTER_REQUEST";
 const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 const REGISTER_FAILURE = "REGISTER_FAILURE";
+const GITHUB_LOGIN_REQUEST = "GITHUB_LOGIN_REQUEST";
+const GITHUB_LOGIN_SUCCESS = "GITHUB_LOGIN_SUCCESS";
+const GITHUB_LOGIN_FAILURE = "GITHUB_LOGIN_FAILURE";
 
 // Action Creators
 const registerRequest = (): AuthActionTypes => ({
@@ -71,6 +91,20 @@ const registerSuccess = (payload: User): AuthActionTypes => ({
 
 const registerFailure = (error: any): AuthActionTypes => ({
   type: REGISTER_FAILURE,
+  error,
+});
+
+const githubLoginRequest = (): AuthActionTypes => ({
+  type: GITHUB_LOGIN_REQUEST,
+});
+
+const githubLoginSuccess = (payload: User): AuthActionTypes => ({
+  type: GITHUB_LOGIN_SUCCESS,
+  payload,
+});
+
+const githubLoginFailure = (error: any): AuthActionTypes => ({
+  type: GITHUB_LOGIN_FAILURE,
   error,
 });
 
@@ -99,6 +133,22 @@ export const registerAction = (inputData: RegisterArgs): AppThunk => async (
   }
 };
 
+export const githubLogin = (code: string): AppThunk => async (dispatch) => {
+  dispatch(githubLoginRequest());
+  try {
+    const response = await fetch(`/api/auth/github?code=${code}`);
+    const { status, data, message } = await response.json();
+    if (response.ok && status === "success") {
+      dispatch(githubLoginSuccess(data.user));
+      localStorage.setItem("accessToken", data.accessToken);
+    } else {
+      dispatch(githubLoginFailure(message));
+    }
+  } catch (err) {
+    dispatch(githubLoginFailure("Failed github login."));
+  }
+};
+
 // Initial state of reducer.
 const initialState: AuthState = {
   session: null,
@@ -110,11 +160,13 @@ const initialState: AuthState = {
 export const auth = (state = initialState, action: AuthActionTypes) => {
   switch (action.type) {
     case REGISTER_REQUEST:
+    case GITHUB_LOGIN_REQUEST:
       return {
         ...state,
         fetching: true,
       };
     case REGISTER_SUCCESS:
+    case GITHUB_LOGIN_SUCCESS:
       return {
         ...state,
         fetching: false,
@@ -122,6 +174,7 @@ export const auth = (state = initialState, action: AuthActionTypes) => {
         authenticated: true,
       };
     case REGISTER_FAILURE:
+    case GITHUB_LOGIN_FAILURE:
       return {
         ...state,
         fetching: false,

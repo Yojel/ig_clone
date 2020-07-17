@@ -20,7 +20,10 @@ type IFormInputs = {
 const schema = yup.object().shape({
   name: yup.string().required("Name is required"),
   email: yup.string().email("Email is invalid").required("Email is required"),
-  password: yup.string().required("Password is required"),
+  password: yup
+    .string()
+    .min(6, "Password must have atleast 6 characters")
+    .required("Password is required"),
   confirmPassword: yup
     .string()
     .oneOf([yup.ref("password")], "Passwords must match")
@@ -46,10 +49,13 @@ export const Register = () => {
         <span className={styles.register__description}>
           Sign up to see photos and videos from your friends.
         </span>
-        <button className={styles.register__github}>
+        <a
+          href={`https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&scope=user:email`}
+          className={styles.register__github}
+        >
           <FaGithub className={styles.register__github_icon} />
           <span>Login with Github</span>
-        </button>
+        </a>
         <div className={styles.register__divider}>
           <hr />
           <span>OR</span>

@@ -41,6 +41,7 @@
   color: white;
   border-radius: 2px;
   border: none;
+  text-decoration: none;
 }
 
 .register__github:hover {

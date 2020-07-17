@@ -5,6 +5,7 @@ import { ProtectedRoute } from "../components/ProtectedRoute";
 import { AuthRoute } from "../components/AuthRoute";
 import { Login } from "./Login";
 import { Register } from "./Register";
+import { Github } from "./Github";
 
 export const Routes = () => (
   <BrowserRouter>
@@ -14,6 +15,9 @@ export const Routes = () => (
       </AuthRoute>
       <AuthRoute exact path="/register">
         <Register />
+      </AuthRoute>
+      <AuthRoute path="/auth/github">
+        <Github />
       </AuthRoute>
     </Switch>
   </BrowserRouter>

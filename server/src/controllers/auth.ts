@@ -67,3 +67,26 @@ export const loadSession = catchError(async (req, res) => {
     },
   });
 });
+
+export const github = catchError(async (req, res) => {
+  const { code } = req.query;
+  if (typeof code !== "string") {
+    throw new AppError(401, "Github code not found.");
+  }
+  const { githubAccessToken } = await authServices.githubToken(code);
+  const { user, accessToken, refreshToken } = await authServices.githubData(
+    githubAccessToken
+  );
+  // Set refresh token as HTTP-only cookie.
+  res.cookie("refreshToken", refreshToken, {
+    httpOnly: true,
+    maxAge: parseInt(process.env.REFRESH_TOKEN_EXPIRATION!),
+  });
+  res.json({
+    status: "success",
+    data: {
+      user,
+      accessToken,
+    },
+  });
+});

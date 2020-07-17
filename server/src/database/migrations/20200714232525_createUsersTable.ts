@@ -5,7 +5,8 @@ export async function up(knex: Knex): Promise<void> {
     table.increments();
     table.string("name").unique().notNullable();
     table.string("email").unique().notNullable();
-    table.string("password").notNullable();
+    table.string("password");
+    table.integer("githubId");
     table.boolean("activated").defaultTo(false);
     table.integer("token_version").defaultTo(0);
     table.timestamps(true, true);

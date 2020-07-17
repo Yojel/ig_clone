@@ -16,5 +16,6 @@ router.post(
 router.get("/logout", authControllers.logout);
 router.get("/refresh_token", cookieParser(), authControllers.refreshToken);
 router.get("/load_session", protect, authControllers.loadSession);
+router.get("/github", authControllers.github);
 
 export const authRoutes = router;
